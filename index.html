@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Game Hub</title>
+<style>
+:root {
+  --bg: #0f1724;
+  --card: #1e293b;
+  --accent: #7dd3fc;
+  --text: #f1f5f9;
+  --radius: 12px;
+  --hover-scale: 1.05;
+  --transition: 0.2s;
+  --maxwidth: 1000px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: var(--maxwidth);
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--accent);
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.game-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.game-card:hover {
+  transform: scale(var(--hover-scale));
+  box-shadow: 0 8px 20px rgba(125, 211, 252, 0.4);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>My Game Hub</h1>
+  <div class="game-grid" id="gameGrid">
+    <!-- ゲームボタンはここに生成 -->
+  </div>
+</div>
+
+<script>
+// HTTPSリンク + 文字のみボタン
+const games = [
+  { title: "謎解きサイト", url: "https://potato-13-58.github.io/No3_game.com/" },
+  { title: "ボケて", url: "https://potato-13-58.github.io/No6_game.com/" },
+  { title: "ニュースの時間です", url: "https://potato-13-58.github.io/No8_game.com/" },
+  { title: "100を超えたら負け", url: "https://potato-13-58.github.io/No9_game.com/" },
+  { title: "行動当てゲーム", url: "https://potato-13-58.github.io/No10_game.com/" }
+];
+
+const grid = document.getElementById("gameGrid");
+
+games.forEach(game => {
+  const card = document.createElement("div");
+  card.classList.add("game-card");
+  card.textContent = game.title;
+  card.onclick = () => window.open(game.url, "_blank");
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
